@@ -1,0 +1,36 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.9.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+// 자바와 스프링 부트를 사용하기 위해서는 필수 플러그인들이니 항상 추가
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management' // 스프링 부트의 의존성들을 관리해 주는 플러그인이라 꼭 추가
+
+group 'springboot-webservice'
+version '1.0-SNAPSHOT'
+sourceCompatibility = 1.8
+
+// 각종 의존성들을 어떤 원격 저장소에서 받을지를 정합니다.
+// 기본적으로 mavenCentral 을 많이 사용하지만 최근에는 라이브러리 업로드 난이도 때문에 jcenter도 많이 사용합니다.
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+
+// 프로젝트 개발에 필요한 의존성들을 선언하는 곳입니다.
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+}
